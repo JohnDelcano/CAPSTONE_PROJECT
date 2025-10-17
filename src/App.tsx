@@ -1,6 +1,9 @@
 
 
 export default function App() {
+  const appName = typeof window !== 'undefined' && window.api ? window.api.appName : 'App';
+  const appVersion = typeof window !== 'undefined' && window.api ? window.api.appVersion : '';
+  const ping = typeof window !== 'undefined' && window.api ? window.api.ping() : '';
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -34,7 +37,10 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold mb-4">Dashboard Overview</h1>
+        <div className="flex items-baseline justify-between mb-4">
+          <h1 className="text-3xl font-bold">Dashboard Overview</h1>
+          <div className="text-sm text-gray-500">{appName} {appVersion} • {ping}</div>
+        </div>
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-white rounded-lg shadow p-4">
             <h2 className="text-xl font-semibold">Books</h2>
